@@ -27,15 +27,18 @@ while True:
             pygame.quit()
             exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_r and game.end_game == True:
+                game.end_game = False
+                game.reset_game()
+            if event.key == pygame.K_LEFT and game.end_game == False:
                 game.move_left()
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and game.end_game == False:
                 game.move_right()
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN and game.end_game == False:
                 game.move_down()
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP and game.end_game == False:
                 game.rotate()
-        if event.type == GAME_UPDATE:
+        if event.type == GAME_UPDATE and game.end_game == False:
             game.move_down()
     
     screen.fill(BACKGROUND)
