@@ -7,6 +7,9 @@ class Colors:
     BLUE = (51, 51, 255)
     PINK = (255, 51, 153)
     GREY = (160, 160, 160)
+    WHITE = (255, 255, 255)
+    FUCHSIA = (102, 0, 51)
+
 
     @classmethod
     def get_colors(cls):

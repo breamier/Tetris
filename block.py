@@ -12,10 +12,10 @@ class Block:
         self.state = 0
         self.colors = Colors.get_colors()
 
-    def draw(self, screen):
+    def draw(self, screen, offset_x, offset_y):
         tiles = self.get_positions()
         for tile in tiles:
-            tile_rect = pygame.Rect(tile.column * self.cell_size + 1, tile.row * self.cell_size + 1, self.cell_size - 1, self.cell_size - 1)
+            tile_rect = pygame.Rect(tile.column * self.cell_size + offset_x, tile.row * self.cell_size + offset_y, self.cell_size - 1, self.cell_size - 1)
             pygame.draw.rect(screen, self.colors[self.id], tile_rect)
 
     def move(self, rows, columns):
