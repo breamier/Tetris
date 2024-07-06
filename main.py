@@ -10,9 +10,13 @@ WINDOW_HEIGHT = 700
 pygame.init()
 
 font_title = pygame.font.Font(None, 40)
+subtitle = pygame.font.Font(None, 20)
 score_surface = font_title.render("Score", True, Colors.WHITE) 
-next_surface = font_title.render("Next Block", True, Colors.WHITE) 
+next_surface = font_title.render("Mauy Gel2", True, Colors.WHITE) 
 game_over_surface = font_title.render("GAME OVER", True, Colors.RED)
+instruction_surface = subtitle.render("Press R to Try Again", True, Colors.GREY)
+logo = pygame.image.load('images/tetris.png')
+logo_surface = pygame.transform.scale(logo, (60, 50))
 
 score_rect = pygame.Rect(375, 120, 180, 50)
 next_rect = pygame.Rect(375, 290, 180, 150)
@@ -26,7 +30,7 @@ clock = pygame.time.Clock()
 game = Game()
 
 GAME_UPDATE = pygame.USEREVENT
-pygame.time.set_timer(GAME_UPDATE, 300)
+pygame.time.set_timer(GAME_UPDATE, 30)
 
 # Game Loop
 while True:
@@ -51,6 +55,7 @@ while True:
             game.move_down()
     
     screen.fill(Colors.FUCHSIA)
+    screen.blit(logo_surface, (20, 20))
     # Add position of Score
     score_value_surface = font_title.render(str(game.score), True, Colors.BACKGROUND)
     screen.blit(score_surface, (425, 90, 100, 100))
@@ -58,10 +63,11 @@ while True:
     screen.blit(score_value_surface, score_value_surface.get_rect(centerx = score_rect.centerx, centery = score_rect.centery))
     screen.blit(next_surface, (395, 250, 100, 200))
     pygame.draw.rect(screen, Colors.WHITE,  next_rect, 0, 10)
-
+    
     if game.end_game == True:
         screen.blit(game_over_surface, (380, 450, 100, 100))
-    
+        screen.blit(instruction_surface, (400, 480, 100, 100))
+
     game.draw(screen)
     
     pygame.display.update()
